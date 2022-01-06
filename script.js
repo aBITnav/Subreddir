@@ -1,29 +1,34 @@
 
 
 function makeList(cardInfo) {
+    let target=Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     return content= `
     <div class="col-sm">
-        <div class="card bg-light border-secondary mb-3 modal-body" id="${cardInfo.url}">
-        <img class="card-img-top" src="${cardInfo.url}" alt="Card image cap">
-        <div class="card-body">
-            <h6 class="card-title">${cardInfo.title}</h5>
-            <p class="card-text">${cardInfo.author}</p>
-            <p class="card-text">${cardInfo.upvotes}</p>
-            <a href="#" class="btn btn-primary" id="${'but'+cardInfo.url}" data-toggle="modal" data-target="#aaa" >Zoom In</a>
+        <div class="card bg-light bg-gradient border-secondary mb-3 modal-body" id="${cardInfo.url}">
+        <div class="card-header winter-neva-gradient">
+            <h4 class="card-text">${cardInfo.author}</h4>
         </div>
+        <div class="card-body"  data-toggle="modal" data-target="${'#'+target}">
+            
+            <img class="card-img-bottom" src="${cardInfo.url}" alt="Card image cap">
         </div>
-    <div class="modal fade" id="aaa" >
+    </div>
+    <div class="modal fade" id="${target}" >
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">${cardInfo.title}</h4>
+                <h4 class="modal-title">${cardInfo.author}</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                ${cardInfo.author}
+            <img class="card-img-top" src="${cardInfo.url}" alt="Card image cap">
+                
+            <p class="lead">${cardInfo.title}</p>
             </div>
+            
             <div class="modal-footer">
-                ${cardInfo.upvotes}
+                <i class="fa fa-thumbs-up fa-2x  mr-auto">
+                ${cardInfo.upvotes}</i>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -77,10 +82,4 @@ function zoom(params) {
     } else {
         button.innerText = "Zoom In";
     }
-    // document.getElementById(params).style.cssText=`
-    // transform: scale(1.2);
-    // z-index: 1;
-    // background-color: rgba(0, 0, 0, 0.61);
-    // backdrop-filter: blur(5px);
-    //
 }
